@@ -1,42 +1,81 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+}
+.title {
   text-align: center;
 }
+.toDoList {
+  max-width: 40rem;
+  min-width: 15rem;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: -2px 7px 14px 1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: -2px 7px 14px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: -2px 7px 14px 1px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+}
+.addForm {
+  display: flex;
+}
+.task-input {
+  flex-basis: 90%;
+  padding: 2px 2.5px;
+  border: none;
+}
+.task-input:focus {
+  outline-color: transparent;
+}
+.task-box {
+  display: flex;
+  align-items: center;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  margin-top: 2rem;
+}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+ul > li {
+  list-style: none;
+  margin-bottom: 1rem;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.line {
+  width: 100%;
+  border: 1px solid black;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.item {
+  display: flex;
+  padding-bottom: 1.5px;
+}
+.item > div {
+  flex-basis: 95%;
+}
+.task {
+  margin-left: 0.5rem;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+}
+.btn:hover {
+  background-color: rgb(243, 236, 236);
+  cursor: pointer;
+}
+.add-button {
+  background-color: rgb(23, 23, 141);
+  color: white;
+  border: transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+.add-button:hover {
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 320px) {
+  .toDoList{
+    padding: 1rem;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
