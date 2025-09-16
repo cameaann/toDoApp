@@ -17,34 +17,42 @@ const ToDoList = ({ toDoItems }: ToDoListProps) => {
   }, [toDoList]);
 
   const handleAddItem = (item: string) => {
-    const addItem = { id: toDoList.length + 1, text: item, status: "pending" };
+    const addItem: ToDoItem = { id: Date.now(), text: item, status: "pending" };
     setToDoList([...toDoList, addItem]);
   };
 
-  const handleChange = (id: number) => {
+  const toggleStatus = (status: ToDoItem["status"]) : ToDoItem["status"] =>
+    status === "pending" ? "completed" : "pending"
+
+  const handleChange = (id: number | string) => {
     const updateList = toDoList.map((el) => {
       if (el.id === id) {
         return {
           ...el,
-          status: el.status === "pending" ? "completed" : "pending",
+          status: toggleStatus(el.status),
         };
       }
       return el;
     });
-    setToDoList(updateList);
+    setToDoList(updateList)
   };
 
-  const handleDelete = (id: number) =>{
-    const updatedList = toDoList.filter(item => item.id !== id)
-    setToDoList(updatedList)
-  }
+  const handleDelete = (id: string | number) => {
+    const updatedList = toDoList.filter((item) => item.id !== id);
+    setToDoList(updatedList);
+  };
 
   return (
     <div className="toDoList">
       <AddItem handleAdd={handleAddItem} />
       <ul>
         {pendingTasks.map((item) => (
-          <Item item={item} key={item.id} onChange={handleChange} onClick={handleDelete}/>
+          <Item
+            item={item}
+            key={item.id}
+            onChange={handleChange}
+            onClick={handleDelete}
+          />
         ))}
       </ul>
       {doneList.length > 0 ? (
@@ -52,7 +60,12 @@ const ToDoList = ({ toDoItems }: ToDoListProps) => {
           <div className="line"></div>
           <ul>
             {doneList.map((item) => (
-              <Item item={item} key={item.id} onChange={handleChange} onClick={handleDelete}/>
+              <Item
+                item={item}
+                key={item.id}
+                onChange={handleChange}
+                onClick={handleDelete}
+              />
             ))}
           </ul>
         </>

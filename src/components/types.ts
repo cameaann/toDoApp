@@ -1,5 +1,5 @@
 export type ToDoItem = {
-	id: number;
-	text: string;
-	status: string;
-}
+  id: string | number;
+  text: string;
+  status: "pending" | "completed";
+};

@@ -2,8 +2,8 @@ import { type ToDoItem } from "./types";
 
 export type ItemProp = {
   item: ToDoItem;
-  onChange: (id: number) => void;
-  onClick: (id: number) => void;
+  onChange: (id: string | number) => void;
+  onClick: (id: string | number) => void;
 };
 
 const Item = ({ item, onChange, onClick }: ItemProp) => {

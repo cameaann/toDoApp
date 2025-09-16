@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 
 type AddItemProps = {
   handleAdd: (item: string) => void;
@@ -7,26 +7,22 @@ type AddItemProps = {
 const AddItem = ({ handleAdd }: AddItemProps) => {
   const [newItem, setNewItem] = useState("");
 
-  useEffect(() => {
-    const inp = document.getElementById("task");
-
-    inp?.addEventListener("keypress", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        if (newItem.length > 0) {
-          handleAdd(newItem);
-          setNewItem("");
-        }
-      }
-    });
-  });
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (newItem.length > 0) {
       handleAdd(newItem);
     }
     setNewItem("");
+  }
+
+  function handlePressKey(e: KeyboardEvent) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (newItem.trim()) {
+        handleAdd(newItem);
+        setNewItem("");
+      }
+    }
   }
 
   return (
@@ -38,8 +34,11 @@ const AddItem = ({ handleAdd }: AddItemProps) => {
         placeholder="Add a new task"
         value={newItem}
         onChange={(e) => setNewItem(e.target.value)}
+        onKeyDown={() => handlePressKey}
       />
-      <button className="add-button" type="submit">Add</button>
+      <button className="add-button" type="submit">
+        Add
+      </button>
     </form>
   );
 };
